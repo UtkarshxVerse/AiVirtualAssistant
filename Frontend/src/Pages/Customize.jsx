@@ -1,4 +1,4 @@
-import React, { use, useContext, useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Card from '../components/card'
 import pro1 from '../assets/pro1.jpg'
 import pro2 from '../assets/pro2.jpg'
@@ -12,26 +12,31 @@ import pro8 from '../assets/pro8.jpg'
 import { LuImagePlus } from "react-icons/lu";
 import { UserDataContext } from '../Context/UserContext'
 import { useNavigate } from 'react-router-dom'
+import { IoArrowBackOutline } from "react-icons/io5";
 
 function Customize() {
-  const { frontendImage, setFrontendImage, backendImage, setBackendImage, selectedImage, setSelectedImage } = useContext(UserDataContext);
+  const { frontendImage, setFrontendImage, setBackendImage, selectedImage, setSelectedImage } = useContext(UserDataContext);
   const inputImage = useRef();
-
   const navigate = useNavigate();
 
   const handleImage = (e) => {
-    const file = e.target.files[0];
-    setBackendImage(file);  // ye file backend ko bhejne ke liye h
-    setFrontendImage(URL.createObjectURL(file));  // ye image url generate krke dega
-  }
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    setBackendImage(file);
+    setFrontendImage(URL.createObjectURL(file));
+  };
 
   return (
-    <div className='w-full min-h-screen bg-gradient-to-t from-blue-950 to-pink-900 flex flex-col items-center justify-center'>
+    <div className='w-full min-h-screen bg-gradient-to-t from-blue-950 to-pink-900 flex flex-col items-center justify-center px-4 py-8'>
+      {/* back */}
+      <IoArrowBackOutline className='absolute top-5 left-7 size-7 hover:text-white' onClick={() => navigate('/')} />
       {/* heading */}
-      <h1 className='text-white ms:text-xl lg:text-3xl mb-8 mt-3'>Select your <span className='text-yellow-300 text-4xl'>Assistant Image</span></h1>
+      <h1 className='text-white text-center text-2xl sm:text-3xl lg:text-4xl mb-8 mt-3 font-semibold'>
+        Select your <span className='text-yellow-300 text-3xl sm:text-4xl lg:text-5xl font-bold'>Assistant Image</span>
+      </h1>
 
       {/* cards */}
-      <div className='w-[90%] max-w-[60%] flex gap-[20px] justify-center items-center flex-wrap'>
+      <div className='w-full max-w-6xl flex gap-4 sm:gap-5 justify-center items-center flex-wrap'>
         <Card image={pro1} />
         <Card image={pro2} />
         <Card image={pro3} />
@@ -40,21 +45,24 @@ function Customize() {
         <Card image={pro6} />
         <Card image={pro7} />
         <Card image={pro8} />
-        <div className={`w-[80px] h-[170px] lg:w-[150px] lg:h-[230px] bg-[#3a1c28] rounded-2xl hover:scale-105 duration-300 cursor-pointer overflow-hidden hover:shadow-lg hover:shadow-red-500/50 flex flex-col items-center justify-center ${selectedImage == "input" ? "border-3 border-white shadow-xl shadow-red-500/50" : ""}`} onClick={() => {
-          inputImage.current.click()
-          setSelectedImage("input")
-        }}>
 
-          {!frontendImage && <LuImagePlus className=' text-white sm:text-lg md:text-3xl' />}
-
-          {frontendImage && <img src={frontendImage} className='h-full object-cover' />}
+        <div
+          className={`w-[40%] xs:w-[30%] sm:w-[22%] md:w-[150px] h-[170px] sm:h-[200px] lg:h-[230px] bg-[#3a1c28] rounded-2xl hover:scale-105 duration-300 cursor-pointer overflow-hidden hover:shadow-lg hover:shadow-red-500/50 flex flex-col items-center justify-center ${selectedImage == "input" ? "border-4 border-white shadow-xl shadow-red-500/50" : ""}`}
+          onClick={() => {
+            inputImage.current.click()
+            setSelectedImage("input")
+          }}
+        >
+          {!frontendImage && <LuImagePlus className=' text-white text-3xl sm:text-4xl md:text-5xl' />}
+          {frontendImage && <img src={frontendImage} className='h-full w-full object-cover' />}
         </div>
-        <input type="file" accept='image/*' ref={inputImage} onChange={handleImage} hidden />  
+
+        <input type="file" accept='image/*' ref={inputImage} onChange={handleImage} hidden />
       </div>
 
-      {/* next buttton */}
+      {/* next button */}
       {
-        selectedImage && <button className='bg-white text-black my-8 px-5 py-2 rounded-4xl font-bold hover:scale-105 duration-300 cursor-pointer' onClick={() => navigate('/customizename')}>
+        selectedImage && <button className='bg-white text-black my-8 px-6 sm:px-8 py-2 rounded-full text-base sm:text-lg font-bold hover:scale-105 duration-300 cursor-pointer' onClick={() => navigate('/customizename')}>
           Next
         </button>
       }

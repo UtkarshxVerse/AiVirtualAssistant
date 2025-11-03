@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
 
-const uploadClouinary = async (filePath) => {
+const uploadOnCloudinary = async (filePath) => {
     // Configuration
     cloudinary.config({
         cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -11,8 +11,7 @@ const uploadClouinary = async (filePath) => {
 
     try {
         // Upload an image
-        const uploadResult = await cloudinary.uploader
-            .upload(filePath)
+        const uploadResult = await cloudinary.uploader.upload(filePath)
             fs.unlinkSync(filePath); // Remove file from server after upload
             return uploadResult.secure_url;
         } catch (error) {
@@ -21,4 +20,4 @@ const uploadClouinary = async (filePath) => {
     }
 }
 
-export default uploadClouinary;
+export default uploadOnCloudinary;
