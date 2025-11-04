@@ -25,7 +25,7 @@ what I found", "Today is Tuesday", etc.
 
 Type meanings:
 
-- "general": if it's a factual or informational question.
+- "general": if it's a factual or informational question.Aur agar koi aisa question puchta hai jiska answer tumhe pata ho toh usko general ki category me rakho aur uska short answer dena.
 - "google-search": if user wants to search something on Google
 - "youtube-search": if user wants to search something on YouTube.
 - "youtube-play": if user wants to directly play a video or song.
