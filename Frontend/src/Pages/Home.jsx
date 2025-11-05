@@ -186,52 +186,105 @@ function Home() {
   }, [userData]);
 
   return (
-    <div className='w-full min-h-screen bg-gradient-to-t from-black to-[#373778] flex flex-col items-center justify-center px-4 py-8 relative'>
-      {/* For mob view */}
-      <TbMenuDeep className='text-3xl block lg:hidden absolute top-6 right-5' onClick={() => setMenu(true)} />
+    <div className="w-full min-h-screen bg-gradient-to-t from-black to-[#373778] flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
+      {/* For mobile view */}
+      <TbMenuDeep
+        className="text-3xl block lg:hidden absolute top-6 right-5 cursor-pointer hover:text-gray-300 transition"
+        onClick={() => setMenu(true)}
+      />
 
-      <div className={`absolute top-0 w-full h-full bg-[#00000053] backdrop-blur-lg flex flex-col items-center ${menu ? "translate-x-0" : 'translate-x-full'} lg:hidden duration-300 ease-in-out p-6 gap-3`}>
-        <RxCross1 className='text-3xl block lg:hidden absolute top-6 right-5' onClick={() => setMenu(false)} />
+      {/* Mobile sidebar menu */}
+      <div
+        className={`fixed inset-0 bg-[#00000060] backdrop-blur-lg flex flex-col items-center justify-start ${menu ? "translate-x-0" : "translate-x-full"
+          } lg:hidden transition-transform duration-300 ease-in-out p-6 gap-4 z-50`}
+      >
+        <RxCross1
+          className="text-3xl block lg:hidden absolute top-6 right-5 cursor-pointer hover:text-gray-300 transition"
+          onClick={() => setMenu(false)}
+        />
 
-        <button className='bg-white block lg:hidden text-black w-[80%] mt-20 my-2 px-5 py-2 rounded-xl font-bold hover:scale-105 duration-300 cursor-pointer' onClick={handleLogout}>LogOut</button>
+        <button
+          className="bg-white text-black w-4/5 mt-20 px-5 py-2 rounded-xl font-bold hover:scale-105 transition-transform duration-300 cursor-pointer"
+          onClick={handleLogout}
+        >
+          LogOut
+        </button>
 
-        <button className='bg-white block lg:hidden text-black w-[80%] my-0 px-5 py-2 rounded-xl font-bold hover:scale-105 duration-300 cursor-pointer' onClick={() => navigate("/customize")}>Customize Assistant</button>
+        <button
+          className="bg-white text-black w-4/5 my-2 px-5 py-2 rounded-xl font-bold hover:scale-105 transition-transform duration-300 cursor-pointer"
+          onClick={() => navigate('/customize')}
+        >
+          Customize Assistant
+        </button>
 
-        <h1 className='text-white font-bold text-4xl my-8'>History</h1>
+        <h1 className="text-white font-bold text-3xl sm:text-4xl my-8 text-center">
+          History
+        </h1>
 
-        <div className='font-lg w-full h-[400px] flex flex-col text-white overflow-auto p-4 '>
+        <div className="font-medium w-full max-h-[400px] flex flex-col text-white overflow-auto p-4 space-y-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
           {userData?.history?.length > 0 ? (
             userData.history.map((his, index) => (
-              <span key={index} className='truncate-y text-[15px] flex flex-row items-center gap-2'>
-                <GoDotFill className='text-white' /> {his}
+              <span
+                key={index}
+                className="truncate text-[15px] flex flex-row items-center gap-2"
+              >
+                <GoDotFill className="text-white shrink-0" /> {his}
               </span>
             ))
           ) : (
-            <span className="text-gray-300 italic">No history yet</span>
+            <span className="text-gray-300 italic text-center">No history yet</span>
           )}
         </div>
       </div>
 
-      {/* buttons for large view*/}
-      <button className='bg-white text-black my-7 px-5 py-2 rounded-4xl font-bold hover:scale-105 duration-300 cursor-pointer absolute top-[5px] right-[20px] hidden lg:block' onClick={handleLogout}>LogOut</button>
+      {/* Buttons for large view */}
+      <button
+        className="bg-white text-black px-5 py-2 rounded-full font-bold hover:scale-105 duration-300 cursor-pointer absolute top-6 right-5 hidden lg:block"
+        onClick={handleLogout}
+      >
+        LogOut
+      </button>
 
-      <button className='bg-white text-black my-7 px-5 py-2 rounded-4xl font-bold hover:scale-105 duration-300 cursor-pointer absolute top-[5px] left-[20px] hidden lg:block' onClick={() => navigate("/customize")}>Customize Assistant</button>
+      <button
+        className="bg-white text-black px-5 py-2 rounded-full font-bold hover:scale-105 duration-300 cursor-pointer absolute top-6 left-5 hidden lg:block"
+        onClick={() => navigate('/customize')}
+      >
+        Customize Assistant
+      </button>
 
-      <div className='mt-5 text-white text-3xl sm:text-lg lg:text-2xl font-bold mb-5'>
-        Welcome, I am <span className='text-yellow-300'>{userData?.assistantName}</span> !
+      {/* Main content */}
+      <div className="mt-10 text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-center leading-tight px-2">
+        Welcome, I am <span className="text-yellow-300">{userData?.assistantName}</span>!
       </div>
 
-      <div className='h-[300px] w-[220px] flex justify-center items-center overflow-hidden'>
-        <img src={userData?.assistantImage} className='h-full w-full object-cover rounded-4xl' alt="assistant" />
+      <div className="h-[260px] sm:h-[300px] w-[180px] sm:w-[220px] flex justify-center items-center overflow-hidden rounded-3xl shadow-lg">
+        <img
+          src={userData?.assistantImage}
+          className="h-full w-full object-cover rounded-3xl"
+          alt="assistant"
+        />
       </div>
 
-      {!aiText && <img src={userVoice} className='w-[200px] mt-3' alt="user speaking" />}
-      {aiText && <img src={aiVoice} className='w-[200px] mt-2' alt="ai speaking" />}
+      {!aiText && (
+        <img
+          src={userVoice}
+          className="w-[160px] sm:w-[200px] mt-4"
+          alt="user speaking"
+        />
+      )}
+      {aiText && (
+        <img
+          src={aiVoice}
+          className="w-[160px] sm:w-[200px] mt-4"
+          alt="ai speaking"
+        />
+      )}
 
-      <h2 className='text-white font-mono'>
+      <h2 className="text-white font-mono text-sm sm:text-base text-center mt-3 px-4 break-words max-w-lg">
         {userText ? userText : aiText ? aiText : ""}
       </h2>
     </div>
+
   );
 }
 

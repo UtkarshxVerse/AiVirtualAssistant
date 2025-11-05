@@ -27,7 +27,7 @@ function Customize() {
   };
 
   return (
-    <div className='w-full min-h-screen bg-gradient-to-t from-blue-950 to-pink-900 flex flex-col items-center justify-center px-4 py-8'>
+    <div className='w-full h-screen bg-gradient-to-t from-blue-950 to-pink-900 flex flex-col items-center justify-center px-4 py-8'>
       {/* back */}
       <IoArrowBackOutline className='absolute top-5 left-7 size-7 hover:text-white' onClick={() => navigate('/')} />
       {/* heading */}
@@ -47,7 +47,7 @@ function Customize() {
         <Card image={pro8} />
 
         <div
-          className={`w-[40%] xs:w-[30%] sm:w-[22%] md:w-[150px] h-[170px] sm:h-[200px] lg:h-[230px] bg-[#3a1c28] rounded-2xl hover:scale-105 duration-300 cursor-pointer overflow-hidden hover:shadow-lg hover:shadow-red-500/50 flex flex-col items-center justify-center ${selectedImage == "input" ? "border-4 border-white shadow-xl shadow-red-500/50" : ""}`}
+          className={`w-[80px] h-[170px] lg:w-[150px] lg:h-[230px] bg-[#3a1c28] rounded-2xl hover:scale-105 duration-300 cursor-pointer overflow-hidden hover:shadow-lg hover:shadow-red-500/50 flex flex-col items-center justify-center ${selectedImage == "input" ? "border-4 border-white shadow-xl shadow-red-500/50" : ""}`}
           onClick={() => {
             inputImage.current.click()
             setSelectedImage("input")
