@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { UserDataContext } from '../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import aiVoice from '../Assets/aiVoice.gif';
-import userVoice from '../Assets/userVoice.gif';
+import aiVoice from '../assets/aiVoice.gif';
+import userVoice from '../assets/userVoice.gif';
 import { TbMenuDeep } from "react-icons/tb";
 import { RxCross1 } from "react-icons/rx";
 import { GoDotFill } from "react-icons/go";

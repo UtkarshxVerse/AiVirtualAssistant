@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react'
-import Card from '../components/card'
+import Card from '../components/Card'
 import pro1 from '../assets/pro1.jpg'
 import pro2 from '../assets/pro2.jpg'
 import pro3 from '../assets/pro3.jpg'
