@@ -189,7 +189,7 @@ function Home() {
     <div className="w-full min-h-screen bg-gradient-to-t from-black to-[#373778] flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
       {/* For mobile view */}
       <TbMenuDeep
-        className="text-3xl block lg:hidden absolute top-6 right-5 cursor-pointer hover:text-gray-300 transition"
+        className="text-3xl text-white block lg:hidden absolute top-6 right-5 cursor-pointer hover:text-gray-300 transition"
         onClick={() => setMenu(true)}
       />
 
@@ -199,7 +199,7 @@ function Home() {
           } lg:hidden transition-transform duration-300 ease-in-out p-6 gap-4 z-50`}
       >
         <RxCross1
-          className="text-3xl block lg:hidden absolute top-6 right-5 cursor-pointer hover:text-gray-300 transition"
+          className="text-3xl text-white block lg:hidden absolute top-6 right-5 cursor-pointer hover:text-gray-300 transition"
           onClick={() => setMenu(false)}
         />
 
