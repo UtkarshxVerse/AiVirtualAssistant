@@ -226,7 +226,7 @@ function Home() {
             userData.history.map((his, index) => (
               <span
                 key={index}
-                className="truncate text-[15px] flex flex-row items-center gap-2"
+                className="truncate-x text-[15px] flex flex-row items-center gap-2"
               >
                 <GoDotFill className="text-white shrink-0" /> {his}
               </span>
